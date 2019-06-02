@@ -88,6 +88,92 @@ class S99
     result
     # arr.flatten()
   end
+
+  # p08
+  # @param [Array]  arr
+  # @return [Array]
+  def compress(arr)
+    run = lambda do |rest, result, last_element|
+      return result if rest.empty?
+
+      if rest[0] == last_element
+        run.call(rest.drop(1), result, last_element)
+      else
+        run.call(rest.drop(1), result << rest[0], rest[0])
+      end
+    end
+
+    run.call(arr, [], nil)
+  end
+
+  # p09
+  # @param [Array]  arr
+  # @return [Array]
+  def pack(arr)
+    run = lambda do |rest, result, last_element|
+      return result if rest.empty?
+
+      if rest[0] == last_element
+        result[-1] << rest[0]
+        run.call(rest.drop(1), result, last_element)
+      else
+        run.call(rest.drop(1), result << [rest[0]], rest[0])
+      end
+    end
+
+    run.call(arr, [], nil)
+  end
+
+  # p10
+  # @param [Array]  arr
+  # @return [Array]
+  def encode(arr)
+
+    run = lambda do |rest, result, last_element|
+      return result if rest.empty?
+
+      if rest[0] == last_element
+        result[-1].increment
+        run.call(rest.drop(1), result, last_element)
+      else
+        result << RunLength.new(rest[0])
+        run.call(rest.drop(1), result, rest[0])
+      end
+    end
+
+    run.call(arr, [], nil)
+  end
+end
+
+# class for P10
+class RunLength
+  attr_reader :key, :count
+
+  def initialize(key, count = 1)
+    @key = key
+    @count = count
+  end
+
+  def increment
+    @count += 1
+  end
+
+  def ==(other)
+    case other
+    when RunLength
+      other.key == @key && other.count == @count
+    else
+      false
+    end
+  end
+
+  def to_s
+    "RunLength(#{@key}: #{@count})"
+  end
+
+  def inspect
+    to_s
+  end
 end
 
 def main
