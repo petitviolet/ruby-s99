@@ -146,9 +146,13 @@ class S99
 end
 
 # class for P10
+# @attr_reader [Object] key
+# @attr_reader [Integer] count
 class RunLength
   attr_reader :key, :count
 
+  # @param [Object]  key
+  # @param [Integer]  count
   def initialize(key, count = 1)
     @key = key
     @count = count
