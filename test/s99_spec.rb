@@ -90,4 +90,9 @@ class S99Test < Minitest::Test
     symbols = %i[a a a b b c a a d d d d e]
     assert_equal symbols, @s99.decode(@s99.encode(symbols))
   end
+
+  def test_duplicate
+    assert_empty @s99.duplicate([])
+    assert_equal %i[a a b b c c d d], @s99.duplicate(%i[a b c d])
+  end
 end

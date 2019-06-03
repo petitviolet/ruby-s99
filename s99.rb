@@ -178,6 +178,17 @@ class S99
       end
     end
   end
+
+  # p13 skipped
+
+  # p14
+  # @param [Array]  arr
+  # @return [Array]
+  def duplicate(arr)
+    arr.each_with_object([]) do |elm, acc|
+      2.times { acc << elm }
+    end
+  end
 end
 
 # class for P10
