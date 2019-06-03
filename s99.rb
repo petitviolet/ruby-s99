@@ -143,6 +143,7 @@ class S99
     run.call(arr, [], nil)
   end
 
+  # p11
   # @param [Array]  arr
   # @return [Array]
   def encode_modified(arr)
@@ -165,6 +166,19 @@ class S99
     end
 
     run.call(arr, [], nil)
+  end
+
+  # p12
+  # @param [Array<RunLength>]  rls
+  # @return [Object]
+  def decode(rls)
+    results = []
+    rls.each do |rl|
+      rl.count.times do
+        results << rl.key
+      end
+    end
+    results
   end
 end
 

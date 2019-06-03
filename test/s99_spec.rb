@@ -80,4 +80,14 @@ class S99Test < Minitest::Test
                   RunLength.new(:a, 2), RunLength.new(:d, 4), :e],
                  @s99.encode_modified(%i[a a a b b c a a d d d d e])
   end
+
+  def test_decode
+    assert_empty @s99.decode([])
+    assert_equal %i[a a a b b c a a d d d d e],
+                 @s99.decode([RunLength.new(:a, 3), RunLength.new(:b, 2), RunLength.new(:c, 1),
+                              RunLength.new(:a, 2), RunLength.new(:d, 4), RunLength.new(:e, 1)])
+
+    symbols = %i[a a a b b c a a d d d d e]
+    assert_equal symbols, @s99.decode(@s99.encode(symbols))
+  end
 end
