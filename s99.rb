@@ -172,13 +172,11 @@ class S99
   # @param [Array<RunLength>]  rls
   # @return [Object]
   def decode(rls)
-    results = []
-    rls.each do |rl|
+    rls.each_with_object([]) do |rl, acc|
       rl.count.times do
-        results << rl.key
+        acc << rl.key
       end
     end
-    results
   end
 end
 
