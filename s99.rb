@@ -199,6 +199,17 @@ class S99
       n.times {acc << elm}
     end
   end
+
+  # p16
+  # @param [Integer]  n
+  # @param [Array]  arr
+  # @return [Array]
+  def drop(n, arr)
+    return arr if n <= 0 || n > arr.length - 1
+
+    arr.delete_at(n - 1)
+    arr
+  end
 end
 
 # class for P10
