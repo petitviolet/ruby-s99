@@ -73,4 +73,11 @@ class S99Test < Minitest::Test
                   RunLength.new(:a, 2), RunLength.new(:d, 4), RunLength.new(:e, 1)],
                  @s99.encode(%i[a a a b b c a a d d d d e])
   end
+
+  def test_encode_modified
+    assert_empty @s99.encode_modified([])
+    assert_equal [RunLength.new(:a, 3), RunLength.new(:b, 2), :c,
+                  RunLength.new(:a, 2), RunLength.new(:d, 4), :e],
+                 @s99.encode_modified(%i[a a a b b c a a d d d d e])
+  end
 end

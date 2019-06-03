@@ -128,7 +128,6 @@ class S99
   # @param [Array]  arr
   # @return [Array]
   def encode(arr)
-
     run = lambda do |rest, result, last_element|
       return result if rest.empty?
 
@@ -137,6 +136,30 @@ class S99
         run.call(rest.drop(1), result, last_element)
       else
         result << RunLength.new(rest[0])
+        run.call(rest.drop(1), result, rest[0])
+      end
+    end
+
+    run.call(arr, [], nil)
+  end
+
+  # @param [Array]  arr
+  # @return [Array]
+  def encode_modified(arr)
+    run = lambda do |rest, result, last_element|
+      return result if rest.empty?
+
+      if rest[0] == last_element
+        case result[-1]
+        when RunLength
+          result[-1].increment
+        else
+          result[-1] = RunLength.new(rest[0], 2)
+        end
+
+        run.call(rest.drop(1), result, last_element)
+      else
+        result << rest[0]
         run.call(rest.drop(1), result, rest[0])
       end
     end
