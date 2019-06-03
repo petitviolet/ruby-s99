@@ -186,7 +186,17 @@ class S99
   # @return [Array]
   def duplicate(arr)
     arr.each_with_object([]) do |elm, acc|
-      2.times { acc << elm }
+      2.times {acc << elm}
+    end
+  end
+
+  # p15
+  # @param [Integer]  n
+  # @param [Array]  arr
+  # @return [Array]
+  def duplicate_n(n, arr)
+    arr.each_with_object([]) do |elm, acc|
+      n.times {acc << elm}
     end
   end
 end

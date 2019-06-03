@@ -95,4 +95,10 @@ class S99Test < Minitest::Test
     assert_empty @s99.duplicate([])
     assert_equal %i[a a b b c c d d], @s99.duplicate(%i[a b c d])
   end
+
+  def test_duplicate_n
+    assert_empty @s99.duplicate_n(3, [])
+    assert_equal %i[a a b b c c d d], @s99.duplicate_n(2, %i[a b c d])
+    assert_equal %i[a a a b b b c c c d d d], @s99.duplicate_n(3, %i[a b c d])
+  end
 end
