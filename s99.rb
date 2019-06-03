@@ -228,6 +228,25 @@ class S99
     end
     [left, right]
   end
+
+  # p18
+  # @param [Integer]  i  begin index
+  # @param [Integer]  j  end index
+  # @param [Array]  arr target array
+  # @return [Array] sliced array
+  def slice(i, j, arr)
+    return [] if i < 0 || j < 0 || j < i
+
+    result = []
+    arr.each_with_index do |elm, idx|
+      if i <= idx && idx <= j
+        result << elm
+      elsif j < idx
+        return result
+      end
+    end
+    result
+  end
 end
 
 # class for P10

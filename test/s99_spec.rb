@@ -115,4 +115,13 @@ class S99Test < Minitest::Test
     assert_equal [[], [1, 2, 3, 4, 5, 6]], @s99.split(-1, [1, 2, 3, 4, 5, 6])
     assert_equal [[1, 2, 3], [4, 5, 6]], @s99.split(3, [1, 2, 3, 4, 5, 6])
   end
+
+  def test_slice
+    assert_empty @s99.slice(1, 2, [])
+    assert_empty @s99.slice(-1, 2, [1, 2, 3, 4, 5, 6])
+    assert_empty @s99.slice(1, -2, [1, 2, 3, 4, 5, 6])
+    assert_empty @s99.slice(2, 1, [1, 2, 3, 4, 5, 6])
+    assert_equal [2, 3], @s99.slice(1, 2, [1, 2, 3, 4, 5, 6])
+    assert_equal [1, 2, 3, 4, 5, 6], @s99.slice(0, 5, [1, 2, 3, 4, 5, 6])
+  end
 end
