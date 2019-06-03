@@ -210,6 +210,24 @@ class S99
     arr.delete_at(n - 1)
     arr
   end
+
+  # p17
+  # @param [Integer]  n
+  # @param [Array]  arr
+  # @return [Array<Array, Array>]
+  def split(n, arr)
+    left = []
+    right = []
+
+    arr.each_with_index do |elm, i|
+      if i < n
+        left << elm
+      else
+        right << elm
+      end
+    end
+    [left, right]
+  end
 end
 
 # class for P10

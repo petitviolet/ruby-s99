@@ -109,4 +109,10 @@ class S99Test < Minitest::Test
     assert_equal %i[b c], @s99.drop(1, %i[a b c])
     assert_equal %i[a c], @s99.drop(2, %i[a b c])
   end
+
+  def test_split
+    assert_equal [[], []], @s99.split(1, [])
+    assert_equal [[], [1, 2, 3, 4, 5, 6]], @s99.split(-1, [1, 2, 3, 4, 5, 6])
+    assert_equal [[1, 2, 3], [4, 5, 6]], @s99.split(3, [1, 2, 3, 4, 5, 6])
+  end
 end
