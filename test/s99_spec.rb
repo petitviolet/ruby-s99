@@ -124,4 +124,10 @@ class S99Test < Minitest::Test
     assert_equal [2, 3], @s99.slice(1, 2, [1, 2, 3, 4, 5, 6])
     assert_equal [1, 2, 3, 4, 5, 6], @s99.slice(0, 5, [1, 2, 3, 4, 5, 6])
   end
+
+  def test_rotate
+    assert_empty @s99.rotate(3, [])
+    assert_equal %i[d e f g h i j k a b c], @s99.rotate(3, %i[a b c d e f g h i j k])
+    assert_equal %i[j k a b c d e f g h i], @s99.rotate(-2, %i[a b c d e f g h i j k])
+  end
 end

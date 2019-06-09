@@ -1,5 +1,6 @@
-require 'rubocop/rake_task'
+# frozen_string_literal: true
 
+require 'rubocop/rake_task'
 
 namespace :s99 do
   RuboCop::RakeTask.new

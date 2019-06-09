@@ -186,7 +186,7 @@ class S99
   # @return [Array]
   def duplicate(arr)
     arr.each_with_object([]) do |elm, acc|
-      2.times { acc << elm }
+      2.times {acc << elm}
     end
   end
 
@@ -196,7 +196,7 @@ class S99
   # @return [Array]
   def duplicate_n(n, arr)
     arr.each_with_object([]) do |elm, acc|
-      n.times { acc << elm }
+      n.times {acc << elm}
     end
   end
 
@@ -246,6 +246,22 @@ class S99
       end
     end
     result
+  end
+
+  # p19
+  # @param [Integer]  n
+  # @param [Array]  arr
+  # @return [Array]
+  def rotate(n, arr)
+    if n.zero? || arr.empty?
+      arr
+    elsif n.positive?
+      n %= arr.length
+      arr[n, arr.length - n] + arr[0, n]
+    else
+      n %= -arr.length
+      rotate(n + arr.length, arr)
+    end
   end
 end
 
